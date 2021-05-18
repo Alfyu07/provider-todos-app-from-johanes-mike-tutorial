@@ -5,7 +5,9 @@ Implementing Firebase Firestore as a storage and provider state management using
 ## Preview
 |              App Preview             |  
 | :----------------------------------: | 
-|  ![preview](./preview/preview.gif)| 
+|  ![preview](./preview/preview.gif | width=350)| 
+
+
 
 ## Watch  
 - [Flutter Tutorial - 1/2 Todo App UI From Scratch (Provider)](https://www.youtube.com/watch?v=kN9Yfd4fu04)
