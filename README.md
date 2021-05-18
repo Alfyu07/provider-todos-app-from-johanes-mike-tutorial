@@ -1,6 +1,16 @@
-# todo_app
+# Firestore Todo Apps from [Johannes Mike](https://github.com/JohannesMilke/) Tutorial
 
-A new Flutter project.
+Implementing Firebase Firestore as a storage and provider state management using flutter framework
+
+## Preview
+|              App Preview             |  
+| :----------------------------------: | 
+|  ![preview](./preview/preview.gif)| 
+
+## Watch  
+- [Flutter Tutorial - 1/2 Todo App UI From Scratch (Provider)](https://www.youtube.com/watch?v=kN9Yfd4fu04)
+- [Flutter Tutorial - 2/2 Todo App UI From Scratch (Provider)](https://www.youtube.com/watch?v=cltCpXY60Sk)
+- [Flutter Tutorial - Todo App From Scratch - Firebase CRUD](https://www.youtube.com/watch?v=EV2DyrKOqrY)
 
 ## Getting Started
 
