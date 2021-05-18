@@ -5,7 +5,7 @@ Implementing Firebase Firestore as a storage and provider state management using
 ## Preview
 |              App Preview             |  
 | :----------------------------------: | 
-|  ![preview](./preview/preview.gif | width=350)| 
+|  <img width="200" alt="portfolio_view" src="https://github.com/Alfyu07/provider-todos-app-from-johanes-mike-tutorial/blob/master/preview/preview.gif">| 
 
 
 
