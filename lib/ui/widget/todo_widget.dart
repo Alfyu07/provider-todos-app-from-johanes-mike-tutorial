@@ -14,7 +14,7 @@ class TodoWidget extends StatelessWidget {
             IconSlideAction(
               color: Colors.green,
               icon: Icons.edit,
-              onTap: () {},
+              onTap: () => editTodo(context, todo),
               caption: 'Edit',
             ),
           ],
@@ -22,8 +22,8 @@ class TodoWidget extends StatelessWidget {
             IconSlideAction(
               color: Colors.red,
               icon: Icons.delete,
-              onTap: () {},
-              caption: 'Edit',
+              onTap: () => deleteTodo(context, todo),
+              caption: 'Delete',
             )
           ],
           child: buildTodo(context),
@@ -39,7 +39,16 @@ class TodoWidget extends StatelessWidget {
           Checkbox(
             activeColor: Theme.of(context).primaryColor,
             value: todo.isDone,
-            onChanged: (_) {},
+            onChanged: (newValue) {
+              final provider =
+                  Provider.of<TodosProvider>(context, listen: false);
+              final isDone = provider.toggleTodoStatus(todo);
+
+              Utils.showSnackBar(
+                context,
+                isDone ? 'Task completed' : 'Task marked incomplete',
+              );
+            },
             checkColor: Colors.white,
           ),
           const SizedBox(
@@ -72,4 +81,14 @@ class TodoWidget extends StatelessWidget {
       ),
     );
   }
+
+  void deleteTodo(BuildContext context, Todo todo) {
+    final provider = Provider.of<TodosProvider>(context, listen: false);
+    provider.removeTodo(todo);
+
+    Utils.showSnackBar(context, 'Deleted the task');
+  }
+
+  void editTodo(BuildContext context, Todo todo) => Navigator.of(context)
+      .push(MaterialPageRoute(builder: (context) => EditTodoPage(todo: todo)));
 }

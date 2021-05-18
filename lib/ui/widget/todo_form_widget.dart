@@ -48,12 +48,6 @@ class TodoFormWidget extends StatelessWidget {
         maxLines: 3,
         initialValue: description,
         onChanged: onChangedDescription,
-        validator: (description) {
-          if (description.isEmpty) {
-            return 'The title cannot be empty';
-          }
-          return null;
-        },
         decoration: InputDecoration(
           border: UnderlineInputBorder(),
           labelText: 'Description',

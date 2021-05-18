@@ -6,7 +6,7 @@ class AddTodoDialogWidget extends StatefulWidget {
 }
 
 class _AddTodoDialogWidgetState extends State<AddTodoDialogWidget> {
-  final _formkey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   String title = '';
   String description = '';
 
@@ -15,29 +15,51 @@ class _AddTodoDialogWidgetState extends State<AddTodoDialogWidget> {
     return AlertDialog(
       content: SingleChildScrollView(
         reverse: true,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'Add Todo',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 22,
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Add Todo',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22,
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            TodoFormWidget(
-              onChangedTitle: (title) => setState(() => this.title = title),
-              onChangedDescription: (description) =>
-                  setState(() => this.description = description),
-              onSavedTodo: () {},
-            )
-          ],
+              const SizedBox(
+                height: 8,
+              ),
+              TodoFormWidget(
+                onChangedTitle: (title) => setState(() => this.title = title),
+                onChangedDescription: (description) =>
+                    setState(() => this.description = description),
+                onSavedTodo: addTodo,
+              )
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  void addTodo() {
+    final isValid = _formKey.currentState.validate();
+    if (!isValid) {
+      return;
+    }
+
+    final todo = Todo(
+      id: DateTime.now().toString(),
+      title: title,
+      description: description,
+      createdTime: DateTime.now(),
+    );
+
+    final provider = Provider.of<TodosProvider>(context, listen: false);
+    provider.addTodo(todo);
+
+    Navigator.of(context).pop();
   }
 }
