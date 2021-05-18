@@ -9,7 +9,7 @@ class CompletedListWidget extends StatelessWidget {
     return todos.isEmpty
         ? Center(
             child: Text(
-            'No Completed tasks.',
+            'No completed tasks.',
             style: TextStyle(fontSize: 20),
           ))
         : ListView.separated(
