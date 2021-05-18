@@ -18,4 +18,22 @@ class Todo {
     this.description = '',
     this.isDone = false,
   });
+
+  Map<String, dynamic> toJson() => {
+        'createdTime': Utils.fromDateTimeToJson(createdTime),
+        'title': title,
+        'id': id,
+        'description': description,
+        'isDone': isDone,
+      };
+
+  static Todo fromJson(Map<String, dynamic> data) => Todo(
+        createdTime: Utils.toDateTime(
+          data['createdTime'],
+        ),
+        title: data['title'],
+        id: data['id'],
+        description: data['description'],
+        isDone: data['isDone'],
+      );
 }

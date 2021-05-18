@@ -37,7 +37,25 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-        body: tabs[selectedIndex],
+        body: StreamBuilder<List<Todo>>(
+          stream: FirebaseApi.readTodos(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.waiting:
+                return Center(child: CircularProgressIndicator());
+              default:
+                if (snapshot.hasError) {
+                  return buildText('Something went wrong, Try again later');
+                } else {
+                  final todos = snapshot.data;
+                  final provider = Provider.of<TodosProvider>(context);
+                  provider.setTodos(todos);
+
+                  return tabs[selectedIndex];
+                }
+            }
+          },
+        ),
         floatingActionButton: FloatingActionButton(
           onPressed: () => showDialog(
             context: context,
@@ -51,4 +69,11 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Colors.black,
         ));
   }
+
+  Widget buildText(String text) => Center(
+        child: Text(
+          text,
+          style: TextStyle(fontSize: 24, color: Colors.white),
+        ),
+      );
 }
