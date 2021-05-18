@@ -26,7 +26,10 @@ class TodoWidget extends StatelessWidget {
               caption: 'Delete',
             )
           ],
-          child: buildTodo(context),
+          child: GestureDetector(
+            onTap: () => editTodo(context, todo),
+            child: buildTodo(context),
+          ),
         ),
       );
 
